@@ -36,6 +36,7 @@ public class MaximizeOutletUsage extends Goal {
                 } else {
                     room.placeFurniture(t, o_x, o_y - 1);
                 }
+
             }
         }
         return room;

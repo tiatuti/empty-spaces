@@ -41,18 +41,18 @@ public class Room {
 
         ArrayList<Outlet> outlets = new ArrayList<>();
         ArrayList<Window> windows = new ArrayList<>();
-        ArrayList<Furniture> fs = new ArrayList<>();
+        ArrayList<Furniture> furnatureList = new ArrayList<>();
         outlets.add(o1);
         outlets.add(o2);
 
         windows.add(w1);
         windows.add(w2);
 
-        fs.add(f);
-        // fs.add(table);
+        furnatureList.add(f);
+        // furnatureList.add(table);
 
         // Creating test room of size 10, 20
-        Room room = new Room(10, 20, outlets, windows, fs);
+        Room room = new Room(10, 20, outlets, windows, furnatureList);
         
         // Tests
 

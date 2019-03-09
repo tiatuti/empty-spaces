@@ -10,11 +10,22 @@ public class Main {
         // Declaring all the stuff
         Furniture f = new Furniture(-1, -1);
 
+        TV tv = new TV(0,0,false);
+
+        CoffeeTable ct = new CoffeeTable(0,0);
+
+        loungeChairs c1 = new loungeChairs(0,0,true);
+        loungeChairs c2 = new loungeChairs(0,0,true);
+        loungeChairs c3 = new loungeChairs(0,0,true);
+
+
 
 
         Outlet o1 = new Outlet(5, y_size - 1);
         Outlet o2 = new Outlet(5, 0);
         Outlet o3 = new Outlet(0, 5);
+        Outlet o4 = new Outlet(0,y_size-3);
+        Outlet o5 = new Outlet(0,y_size-2);
 
         Window w1 = new Window(0, 1);
         Window w2 = new Window(0, 8);
@@ -24,7 +35,7 @@ public class Main {
         // Declaring the lists
         ArrayList<Outlet> outlets = new ArrayList<>();
         ArrayList<Window> windows = new ArrayList<>();
-        ArrayList<Furniture> fs = new ArrayList<>();
+        ArrayList<Furniture> furnatureList = new ArrayList<>();
 
 
 
@@ -33,19 +44,35 @@ public class Main {
         outlets.add(o1);
         outlets.add(o2);
         outlets.add(o3);
-        windows.add(w1);
-        // windows.add(w2);
+        //outlets.add(o4);
+        //outlets.add(o5);
 
-        fs.add(f);
-        fs.add(kt);
+        windows.add(w1);
+        windows.add(w2);
+
+        furnatureList.add(f);
+        furnatureList.add(kt);
+
+        furnatureList.add(tv);
+
+        furnatureList.add(ct);
+
+        furnatureList.add(c1);
+        furnatureList.add(c2);
+        furnatureList.add(c3);
 
         // Adding a whole bunch of end tables
-        for (int i = 0; i < 10; i++) {
-            fs.add(new EndTable(-1, -1));
+        for (int i = 0; i < 20; i++) {
+            furnatureList.add(new EndTable(-1, -1));
+        }
+
+        for (int i = 0; i<x_size*y_size; i++)
+        {
+            furnatureList.add(new EmptySpace(-1,-1,false));
         }
 
         // Creating test room of size 10, 20
-        Room room = new Room(10, 20, outlets, windows, fs);
+        Room room = new Room(x_size, y_size, outlets, windows, furnatureList);
         
         // room.placeFurniture(f, correct);
         // room.placeFurniture(table, tableTest);
@@ -53,6 +80,8 @@ public class Main {
         ArrayList<Goal> subgoals = new ArrayList<>();
         subgoals.add(new MaximizeOutletUsage());
         subgoals.add(new MaximizeWindowUsage());
+        subgoals.add(new MaximizeTVSpace());
+        subgoals.add(new MaximizeEmptySpace());
 
         for (Goal g : subgoals) {
             room = g.execute(room);
@@ -63,25 +92,5 @@ public class Main {
         System.out.println("\n");
         System.out.println("*****************FINAL********************\n");
         room.printLayout();
-
-        for (int y = 1; y < y_size-1; y++) {
-
-            for (int x = 1; x < x_size-1; x++) {
-
-                boolean result = room.isOpen(x, y);
-
-                if (result) {
-                    System.out.println("x,y: " + "(" + x + "," + y + ")");
-                }
-                else {
-                    System.out.println("============");
-                }
-
-
-            }
-
-        }
-
-
     }
 }
