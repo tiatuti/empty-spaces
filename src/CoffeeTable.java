@@ -9,7 +9,7 @@ public class CoffeeTable extends Table {
     public CoffeeTable(int x, int y) {
         super(new Coordinates(x, y), CoffeeTable.icon, EndTable.isSittable);
 
-        // is this ok?
+        // is this ok????
 
     }
 
